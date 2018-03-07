@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Yöneticiler>
+  <Yönetici>
+    <KullaniciAdi>onatilhan</KullaniciAdi>
+    <Sifresi>123456</Sifresi>
+  </Yönetici>
+  <Yönetici>
+    <KullaniciAdi>ozgucan</KullaniciAdi>
+    <Sifresi>123456</Sifresi>
+  </Yönetici>
+  <Yönetici>
+    <KullaniciAdi>osmangokalp</KullaniciAdi>
+    <Sifresi>ege2017</Sifresi>
+  </Yönetici>
+</Yöneticiler>

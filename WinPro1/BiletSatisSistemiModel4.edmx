@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TrenBiletiSatisSistemiModel3.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Biletler">
+          <Key>
+            <PropertyRef Name="BiletNumarasi" />
+          </Key>
+          <Property Name="BiletNumarasi" Type="int" Nullable="false" />
+          <Property Name="KalkisNoktasi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VarisNoktasi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GidisTarihi" Type="nvarchar" MaxLength="50" />
+          <Property Name="DonusTarihi" Type="nvarchar" MaxLength="50" />
+          <Property Name="KisiSayisi" Type="int" Nullable="false" />
+          <Property Name="CocukSayisi" Type="int" />
+          <Property Name="YonBilgisi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="İslemYapanId" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Musteri_Adı" Type="nvarchar" MaxLength="50" />
+          <Property Name="Bilet_Sayısı" Type="int" />
+          <Property Name="Tutar" Type="int" />
+        </EntityType>
+        <EntityType Name="GiseGorevlileri">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Seferler">
+          <Key>
+            <PropertyRef Name="Nerden" />
+            <PropertyRef Name="Nereye" />
+            <PropertyRef Name="Saati" />
+          </Key>
+          <Property Name="Nerden" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nereye" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Saati" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Yetişkin_Fiyatı" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cocuk_Fiyatı" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Yoneticiler">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+          </Key>
+          <Property Name="ManagerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Biletler_GiseGorevlileri">
+          <End Role="GiseGorevlileri" Type="Self.GiseGorevlileri" Multiplicity="1" />
+          <End Role="Biletler" Type="Self.Biletler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiseGorevlileri">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Biletler">
+              <PropertyRef Name="İslemYapanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TrenBiletiSatisSistemiModel3StoreContainer">
+          <EntitySet Name="Biletler" EntityType="Self.Biletler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GiseGorevlileri" EntityType="Self.GiseGorevlileri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seferler" EntityType="Self.Seferler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yoneticiler" EntityType="Self.Yoneticiler" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Biletler_GiseGorevlileri" Association="Self.FK_Biletler_GiseGorevlileri">
+            <End Role="GiseGorevlileri" EntitySet="GiseGorevlileri" />
+            <End Role="Biletler" EntitySet="Biletler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TrenBiletiSatisSistemiModel3" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Biletler">
+          <Key>
+            <PropertyRef Name="BiletNumarasi" />
+          </Key>
+          <Property Name="BiletNumarasi" Type="Int32" Nullable="false" />
+          <Property Name="KalkisNoktasi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VarisNoktasi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GidisTarihi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DonusTarihi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KisiSayisi" Type="Int32" Nullable="false" />
+          <Property Name="CocukSayisi" Type="Int32" />
+          <Property Name="YonBilgisi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="İslemYapanId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Musteri_Adı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Bilet_Sayısı" Type="Int32" />
+          <Property Name="Tutar" Type="Int32" />
+          <NavigationProperty Name="GiseGorevlileri" Relationship="Self.FK_Biletler_GiseGorevlileri" FromRole="Biletler" ToRole="GiseGorevlileri" />
+        </EntityType>
+        <EntityType Name="GiseGorevlileri">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Biletler" Relationship="Self.FK_Biletler_GiseGorevlileri" FromRole="GiseGorevlileri" ToRole="Biletler" />
+        </EntityType>
+        <EntityType Name="Seferler">
+          <Key>
+            <PropertyRef Name="Nerden" />
+            <PropertyRef Name="Nereye" />
+            <PropertyRef Name="Saati" />
+          </Key>
+          <Property Name="Nerden" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nereye" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Saati" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Yetişkin_Fiyatı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cocuk_Fiyatı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Yoneticiler">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+          </Key>
+          <Property Name="ManagerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Biletler_GiseGorevlileri">
+          <End Role="GiseGorevlileri" Type="Self.GiseGorevlileri" Multiplicity="1" />
+          <End Role="Biletler" Type="Self.Biletler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiseGorevlileri">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Biletler">
+              <PropertyRef Name="İslemYapanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TrenBiletiSatisSistemiEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Biletler" EntityType="Self.Biletler" />
+          <EntitySet Name="GiseGorevlileri" EntityType="Self.GiseGorevlileri" />
+          <EntitySet Name="Seferler" EntityType="Self.Seferler" />
+          <EntitySet Name="Yoneticiler" EntityType="Self.Yoneticiler" />
+          <AssociationSet Name="FK_Biletler_GiseGorevlileri" Association="Self.FK_Biletler_GiseGorevlileri">
+            <End Role="GiseGorevlileri" EntitySet="GiseGorevlileri" />
+            <End Role="Biletler" EntitySet="Biletler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TrenBiletiSatisSistemiModel3StoreContainer" CdmEntityContainer="TrenBiletiSatisSistemiEntities4">
+          <EntitySetMapping Name="Biletler">
+            <EntityTypeMapping TypeName="TrenBiletiSatisSistemiModel3.Biletler">
+              <MappingFragment StoreEntitySet="Biletler">
+                <ScalarProperty Name="BiletNumarasi" ColumnName="BiletNumarasi" />
+                <ScalarProperty Name="KalkisNoktasi" ColumnName="KalkisNoktasi" />
+                <ScalarProperty Name="VarisNoktasi" ColumnName="VarisNoktasi" />
+                <ScalarProperty Name="GidisTarihi" ColumnName="GidisTarihi" />
+                <ScalarProperty Name="DonusTarihi" ColumnName="DonusTarihi" />
+                <ScalarProperty Name="KisiSayisi" ColumnName="KisiSayisi" />
+                <ScalarProperty Name="CocukSayisi" ColumnName="CocukSayisi" />
+                <ScalarProperty Name="YonBilgisi" ColumnName="YonBilgisi" />
+                <ScalarProperty Name="İslemYapanId" ColumnName="İslemYapanId" />
+                <ScalarProperty Name="Musteri_Adı" ColumnName="Musteri_Adı" />
+                <ScalarProperty Name="Bilet_Sayısı" ColumnName="Bilet_Sayısı" />
+                <ScalarProperty Name="Tutar" ColumnName="Tutar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GiseGorevlileri">
+            <EntityTypeMapping TypeName="TrenBiletiSatisSistemiModel3.GiseGorevlileri">
+              <MappingFragment StoreEntitySet="GiseGorevlileri">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seferler">
+            <EntityTypeMapping TypeName="TrenBiletiSatisSistemiModel3.Seferler">
+              <MappingFragment StoreEntitySet="Seferler">
+                <ScalarProperty Name="Nerden" ColumnName="Nerden" />
+                <ScalarProperty Name="Nereye" ColumnName="Nereye" />
+                <ScalarProperty Name="Saati" ColumnName="Saati" />
+                <ScalarProperty Name="Yetişkin_Fiyatı" ColumnName="Yetişkin_Fiyatı" />
+                <ScalarProperty Name="Cocuk_Fiyatı" ColumnName="Cocuk_Fiyatı" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yoneticiler">
+            <EntityTypeMapping TypeName="TrenBiletiSatisSistemiModel3.Yoneticiler">
+              <MappingFragment StoreEntitySet="Yoneticiler">
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
